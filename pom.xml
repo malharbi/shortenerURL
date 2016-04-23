@@ -9,11 +9,11 @@
 
 	<properties>
 		<jackson.version>2.7.1</jackson.version>
-		<tomcat.version>7.0.34</tomcat.version>
-		<jersey.version>2.6</jersey.version>
-		<target.version>1.7</target.version>
+		<tomcat.version>8.0.30</tomcat.version>
+		<jersey.version>2.21</jersey.version>
+		<target.version>1.8</target.version>
 		<appassembler.version>1.8</appassembler.version>
-		<source.version>1.7</source.version>
+		<source.version>1.8</source.version>
 		<mvn.compiler.version>3.0</mvn.compiler.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -25,7 +25,7 @@
 </dependency>
 		<dependency>
 	<groupId>org.glassfish.jersey.ext</groupId>
-	<artifactId>jersey-mvc</artifactId>
+	<artifactId>jersey-mvc-jsp</artifactId>
 	<version>${jersey.version}</version>
 </dependency>
 
