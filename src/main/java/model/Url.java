@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Url {
 
-	private String originalUrl, newUrl;
+	private String originalUrl, newUrl, id;
 	
 	 @JsonDeserialize(as=ArrayList.class, contentAs=URL.class)
 	private ArrayList<String> genres;
@@ -29,6 +29,14 @@ public class Url {
 	
 	public void setNewUrl(String newUrl) {
 		this.newUrl = newUrl;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

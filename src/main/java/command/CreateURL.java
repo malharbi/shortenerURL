@@ -1,3 +1,7 @@
+/* Here we create the ID for the URL that's come from user
+ * and save all the information in database as original URL, new URL, ID.
+ */
+
 package command;
 
 import java.net.MalformedURLException;
@@ -17,10 +21,10 @@ import model.Url;
 
 public class CreateURL {
 	public String theNewUrl = new String();
+	SearchUrl search = new SearchUrl();
+	
 	public boolean newUrl(String givenURL){
-		ObjectMapper mapper = new ObjectMapper();
-		CheckUrl newUrl=new CheckUrl();
-		
+		ObjectMapper mapper = new ObjectMapper();		
 		Url addURL= new Url();
 
 		MongoClient client = (new ConnectionProvider()).getConnection();
@@ -29,12 +33,14 @@ public class CreateURL {
 		addURL.setOriginalUrl(givenURL);
 
 		try {
-			URL myURL = new URL("http://mot.az");
-			URL urlID = new URL(myURL, createID());
+			String id = createID();
+			URL myURL = new URL("http://motaz2.herokuapp.com/rest/shortenerUrl");
+			URL urlID = new URL(myURL, id);
 			System.out.println("Your URL from Creat URL is @@@@@@@@@@@@@@@@@:"+ urlID);
 			
 			addURL.setOriginalUrl(givenURL);
 			addURL.setNewUrl(urlID.toString());
+			addURL.setId(id);
 			
 			Document objectDB = new Document(Document.parse(mapper.writeValueAsString(addURL)));
 			urlsCollection.insertOne(objectDB);
@@ -55,7 +61,7 @@ public class CreateURL {
 		return true;
 	}
 
-// create ID that be add to the main URI to mapping to the original URL	that given from user
+// generate ID that be add to the main URI to mapping to the original URL	that given from user
 	public String createID(){
 		ArrayList<String> newID= new ArrayList<String>();
 		Random numR= new Random();
@@ -64,13 +70,17 @@ public class CreateURL {
 				"b","n","m","1","2","3","4","5","6","7","8","9","0",
 				"Q","W","E","R","T","Y","U","I","O","P","A","S","D"
 				,"F","G","H","J","K","L","Z","X","C","V","B","N","M"};
-		for(int i=0; i<=6; i++){
-			newID.add(seedId[numR.nextInt(seedId.length)]);
+		Boolean loop = true;
+		String id = null; 
+		while(loop){
+			for(int i=0; i<=6; i++){
+				newID.add(seedId[numR.nextInt(seedId.length)]);
+			}
+			id = String.join("", newID);
+			System.out.println("Your ID FOR THE NEW URL IS FROM CREATE ID IN CREATEURL CLASS @@@@@@@@@@@@@@@@@:"+ id);
+			loop = search.searchByID(id);
 		}
-		String id = String.join("", newID);
-		System.out.println("Your ID FOR THE NEW URL IS FROM CREATE ID IN CREATEURL CLASS @@@@@@@@@@@@@@@@@:"+ id);
-
-		return id;
+			return id;
 	}
 	
 
