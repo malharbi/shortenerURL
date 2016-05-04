@@ -12,18 +12,20 @@ import java.util.Random;
 import org.bson.Document;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import mongo.ConnectionProvider;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 import model.Url;
+import mongo.ConnectionProvider;
+
 
 public class CreateURL {
 	public String theNewUrl = new String();
 	SearchUrl search = new SearchUrl();
 	
 	public boolean newUrl(String givenURL){
+		System.out.println("Now in create URL::::"+ theNewUrl);
 		ObjectMapper mapper = new ObjectMapper();		
 		Url addURL= new Url();
 
@@ -34,9 +36,8 @@ public class CreateURL {
 
 		try {
 			String id = createID();
-			URL myURL = new URL("http://motaz2.herokuapp.com/rest/shortenerUrl");
+			URL myURL = new URL("http://motaz2.herokuapp.com/rest/shortenerUrl/");
 			URL urlID = new URL(myURL, id);
-			System.out.println("Your URL from Creat URL is @@@@@@@@@@@@@@@@@:"+ urlID);
 			
 			addURL.setOriginalUrl(givenURL);
 			addURL.setNewUrl(urlID.toString());
@@ -44,10 +45,8 @@ public class CreateURL {
 			
 			Document objectDB = new Document(Document.parse(mapper.writeValueAsString(addURL)));
 			urlsCollection.insertOne(objectDB);
-			System.out.println("the URL urlID ==" + urlID);
-
+			System.out.println("the New Url from create Url ::::"+ theNewUrl);
 			theNewUrl= urlID.toString();
-			System.out.println("newUrl.newUrl= urlID.toString(); ==" + theNewUrl);
 
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -77,7 +76,6 @@ public class CreateURL {
 				newID.add(seedId[numR.nextInt(seedId.length)]);
 			}
 			id = String.join("", newID);
-			System.out.println("Your ID FOR THE NEW URL IS FROM CREATE ID IN CREATEURL CLASS @@@@@@@@@@@@@@@@@:"+ id);
 			loop = search.searchByID(id);
 		}
 			return id;

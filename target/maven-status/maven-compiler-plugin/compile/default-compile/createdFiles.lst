@@ -1,6 +1,10 @@
 blueprint/urlService.class
-command/CheckUrl.class
+command/DeleteUrl.class
 model/Url.class
+command/GetUrlcommand.class
+launch/Main.class
+command/SearchUrl.class
+util/PropertiesLookup.class
+command/CheckUrl.class
 command/CreateURL.class
 mongo/ConnectionProvider.class
-launch/Main.class

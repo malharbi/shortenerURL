@@ -1,1 +1,8 @@
-the new URL is ${it.url}
+<!DOCTYPE html>
+<html>
+<body>
+
+<a href=${it.url}> ${it.url} </a>
+
+</body>
+</html>

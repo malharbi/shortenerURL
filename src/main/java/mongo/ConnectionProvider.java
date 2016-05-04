@@ -14,7 +14,7 @@ public class ConnectionProvider {
 
 			MongoCredential credential = MongoCredential.createCredential("motazurl", "shortdb", "urlmotaz".toCharArray());
 			//createCredential("User Name", "Database", "Password")
-			MongoClient client = new MongoClient(new ServerAddress("ds015869.mlab.com", Integer.valueOf("15869")),
+			MongoClient client = new MongoClient(new ServerAddress("ds021691.mlab.com", Integer.valueOf("21691")),
 					Arrays.asList(credential));
 			// ServerAddress("HostName", Integer.valueOf(mongod port)
 			System.out.println("client :"+ client
