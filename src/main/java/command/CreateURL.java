@@ -32,21 +32,28 @@ public class CreateURL {
 		MongoClient client = (new ConnectionProvider()).getConnection();
 		MongoDatabase mdb = client.getDatabase("shortdb");
 		MongoCollection<Document> urlsCollection = mdb.getCollection("urls");
-		addURL.setOriginalUrl(givenURL);
+		//addURL.setOriginalUrl(givenURL);
 
 		try {
+			System.out.println("Now TRY create URL::::"+ theNewUrl);
+
 			String id = createID();
+			System.out.println("the New ID after recived to new url ::::"+ id);
+
 			URL myURL = new URL("http://motaz2.herokuapp.com/rest/shortenerUrl/");
 			URL urlID = new URL(myURL, id);
-			
+			System.out.println("Now urlID  ::::"+ urlID);
+
 			addURL.setOriginalUrl(givenURL);
 			addURL.setNewUrl(urlID.toString());
 			addURL.setId(id);
 			
 			Document objectDB = new Document(Document.parse(mapper.writeValueAsString(addURL)));
 			urlsCollection.insertOne(objectDB);
-			System.out.println("the New Url from create Url ::::"+ theNewUrl);
+			System.out.println("the New Url before send  ::::"+ theNewUrl);
 			theNewUrl= urlID.toString();
+			System.out.println("the New Url after send  ::::"+ theNewUrl);
+
 
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -73,11 +80,17 @@ public class CreateURL {
 		String id = null; 
 		while(loop){
 			for(int i=0; i<=6; i++){
+				System.out.println("Inside the loop for"+newID);
 				newID.add(seedId[numR.nextInt(seedId.length)]);
 			}
 			id = String.join("", newID);
+			System.out.println("Inside the loop while"+id);
 			loop = search.searchByID(id);
+			System.out.println("Inside the loop while"+loop);
+
 		}
+		System.out.println("the New ID befor send to creat ::::"+ id);
+
 			return id;
 	}
 	

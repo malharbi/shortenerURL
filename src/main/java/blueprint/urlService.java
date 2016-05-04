@@ -41,6 +41,7 @@ public class urlService extends Application {
 	
 	@GET
 	@Path("/{id}")
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Response getUrl(@PathParam("id") String id) {
 		GetUrlcommand cmd= new GetUrlcommand();
 		System.out.print("\n\nResponse getUrl(@PathParam(id) String id)"+ id);
@@ -54,37 +55,32 @@ public class urlService extends Application {
 
 	
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	@Consumes({ MediaType.APPLICATION_FORM_URLENCODED, MediaType.TEXT_PLAIN })
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	public Response shortenUrl(@FormParam("givenURL") String givenURL) {
 		try {
 			String newUrl = new String();
 			CheckUrl checker = new CheckUrl();
-			SearchUrl search = new SearchUrl();
-
-			if (givenURL != null)
+			if(givenURL != null)		
 				if (checker.isExiste(givenURL))
-					if (search.searchByOriginalUrl(givenURL))
-						if (createUrl.newUrl(givenURL)) {
-							newUrl = createUrl.theNewUrl;
-							System.out.println("the New Url ::::"+ newUrl);
+					if(search.searchByOriginalUrl(givenURL))
+						if(createUrl.newUrl(givenURL)){
+							newUrl= createUrl.theNewUrl; 
 							output.put("url", newUrl);
-							return Response.ok(new Viewable("/output", output)).build();
-							} else {
+							return Response.ok(new Viewable("/show", output)).build();}
+						else 
 							return Response.status(400).entity("We cant create the new URL : this message form urlService").build();
-						}
-					else {
-						newUrl = search.newUrl;
+						else {
+						newUrl= search.newUrl;
 						output.put("url", newUrl);
-						return Response.ok(new Viewable("/output", output)).build();
-					}
-				else {
-					return Response.status(201).entity("the URL doesn't Existe").build();
-				}
-			else {
+						return Response.ok(new Viewable("/show", output)).build();}
+				else
+					return Response.status(201).entity("the URL doesn't Existe").build();	
+			else 
 				return Response.status(201).entity("the filed is null").build();
-			}
+				
 		} catch (Exception e) {
+			System.out.println("====================66=====================");
+			System.out.println("the mistake is \t"+ e);
 			return Response.status(400).entity(e.toString()).build();
 		}
 	}

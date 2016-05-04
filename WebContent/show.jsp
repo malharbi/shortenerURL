@@ -47,7 +47,7 @@ div {
 <br>
 </nav>
 <div>
-<a href=${it.url}>${it.url}</a>
+<a href="${it.url}">${it.url}</a>
 </div>
 
 

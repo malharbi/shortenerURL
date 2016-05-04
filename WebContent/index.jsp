@@ -43,7 +43,7 @@ $(document).ready(function(){
                     },
                     error: function (jqXHR, status) {
                         console.log(status);
-                        alert('failed, please check console for errors');
+                        alert('failed, The URL incorrect');
                     }
                  });
            }
@@ -67,7 +67,7 @@ $(document).ready(function(){
                     },
                     error: function (jqXHR, status) {
                         console.log(status);
-                        alert('failed, please check console for errors');
+                        alert('failed, The URL incorrect ');
                     }
                  });
            }
@@ -91,7 +91,7 @@ nav {
 }
 div {
     width:450px;
-    float:left;
+    float:center;
     padding:10px;        
 }
 footer {
@@ -120,7 +120,7 @@ footer {
 
 
 <div id="homePage">
-<h1 id="titel">""</h1>
+<h1 id="titel"></h1>
 <p id="demo">This project for software as server (SaaS) course. I used JAVA on the server based on restful.
 <br>
 In this project can create short URL, delete it and updete it by regnerate short URL for the same orjginal URL.
@@ -150,7 +150,7 @@ Enter you Shorten URL to be deleted
 </div>
 
 <div id="updatePage">
-<h1 style="text-align:center;">Update your shorten URL</h1>
+<h1 style="text-align:center;">Update shorten URL</h1>
 <form id="update_form" method="POST" >
 Enter you shorten URL to be update
 <input type="text" class="id" size="40"><br/>

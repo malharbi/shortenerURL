@@ -47,12 +47,16 @@ public class SearchUrl {
 		BasicDBObject searchQuery = new BasicDBObject();
 		searchQuery.put("id", id);
 		DBCursor cursor = collection.find(searchQuery);
+		if(cursor.hasNext()){
 			while(cursor.hasNext()){
 				DBObject result = cursor.next();
 				thedata =result.toMap();
 				originalUrl= thedata.get("originalUrl").toString();
 				}
 			return true;
+		}
+		else
+			return false;
 		
 	}
 	
