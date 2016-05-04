@@ -41,7 +41,7 @@ public class urlService extends Application {
 	
 	@GET
 	@Path("/{id}")
-	@Produces(MediaType.APPLICATION_FORM_URLENCODED)
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	public Response getUrl(@PathParam("id") String id) {
 		GetUrlcommand cmd= new GetUrlcommand();
 		System.out.print("\n\nResponse getUrl(@PathParam(id) String id)"+ id);
