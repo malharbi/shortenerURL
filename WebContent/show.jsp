@@ -6,11 +6,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
 <script>
-base_url="http://localhost:8080/rest/shortenerUrl/";
 
 $(document).ready(function(){
     $("#home").click(function(){
-    	window.location="http://localhost:8080/rest/shortenerUrl/"
+    	window.location="http://motaz2.herokuapp.com/rest/shortenerUrl/"
     	});
 });
 </script>

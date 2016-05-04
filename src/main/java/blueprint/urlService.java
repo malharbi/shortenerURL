@@ -89,6 +89,7 @@ public class urlService extends Application {
 	@Path("/{id}")
 	public Response deleteBook(@PathParam("id") String id) {
 		try{
+			System.out.println("IN delete method to delete ::::"+ id);
 			if (delete.delete(id)) 
 				return Response.status(200).build();			
 		}catch (Exception e) {
