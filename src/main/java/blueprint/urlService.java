@@ -36,7 +36,7 @@ public class urlService extends Application {
 
 	@GET
 	public Response get() {
-		return Response.ok(new Viewable("/index")).build();
+		return Response.ok(new Viewable("/frist")).build();
 	}
 	
 	@GET
